@@ -1,4 +1,6 @@
-Our evaluation requirement followed `coco-caption` as the evaluation code base.
+Our evaluation requirement followed `https://github.com/helloMickey/caption_eval` as the evaluation code base.
+
+First download the code in `https://github.com/helloMickey/caption_eval`.
 
 To evaluate, add the result path in line 171 of `split_eval_no_group.py` then run it,
 the formulation of the result path should be
