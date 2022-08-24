@@ -1,0 +1,22 @@
+python robosense/methods/table_transformers/train_tapax.py \
+--do_train \
+--do_eval \
+--train_file resource/datasets/train_data/train_table_tapas.json \
+--validation_file resource/datasets/valid_data/valid_unseen_table_tapas.json \
+--output_dir tapex_demo_project \
+--model_name_or_path microsoft/tapex-large \
+--overwrite_output_dir \
+--per_device_train_batch_size 2 \
+--gradient_accumulation_steps 8 \
+--per_device_eval_batch_size 2 \
+--learning_rate 3e-5 \
+--logging_steps 10 \
+--eval_steps 1000 \
+--save_steps 1000 \
+--warmup_steps 1000 \
+--evaluation_strategy steps \
+--num_beams 5 \
+--weight_decay 5e-3 \
+--label_smoothing_factor 0.1 \
+--max_steps 20000 \
+--pad_to_max_length
