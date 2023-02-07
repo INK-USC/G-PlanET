@@ -1,8 +1,8 @@
-python robosense/methods/table_transformers/train_tapax.py \
+python main/tapex/train_tapex.py \
 --do_train \
 --do_eval \
---train_file resource/datasets/train_data/train_table_tapas.json \
---validation_file resource/datasets/valid_data/valid_unseen_table_tapas.json \
+--train_file data/train_data/train_table_seq_1_tapex.jsonl \
+--validation_file data/valid_data/valid_unseen_table_seq_tapex.jsonl \
 --output_dir tapex_demo_project \
 --model_name_or_path microsoft/tapex-large \
 --overwrite_output_dir \
