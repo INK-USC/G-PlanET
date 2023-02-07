@@ -49,23 +49,13 @@ def getData(path):
         for item in jsonlines.Reader(f):
               res.append([item['input'],item['output'][0]])
     except:
-      try:
         with open(path.replace('seq','seq_1'), "r+", encoding="utf8") as f:
             for item in jsonlines.Reader(f):
                 res.append([item['input'],item['output'][0]])
         with open(path.replace('seq','seq_2'), "r+", encoding="utf8") as f:
             for item in jsonlines.Reader(f):
                 res.append([item['input'],item['output'][0]])
-      except:
-        with open(path.replace('.jsonl','_1.jsonl'), "r+", encoding="utf8") as f:
-            for item in jsonlines.Reader(f):
-                res.append([item['input'],item['output'][0]])
-        with open(path.replace('.jsonl','_2.jsonl'), "r+", encoding="utf8") as f:
-            for item in jsonlines.Reader(f):
-                res.append([item['input'],item['output'][0]])
     return res
-
-
 
 train_data = getData(train_data_path)
 print(train_data[0])

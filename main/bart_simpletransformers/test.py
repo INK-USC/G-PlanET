@@ -5,6 +5,28 @@ import pandas as pd
 from simpletransformers.seq2seq import Seq2SeqModel, Seq2SeqArgs
 import torch
 import os
+
+import sys
+from torch.utils.data import dataloader
+from torch.multiprocessing import reductions
+from multiprocessing.reduction import ForkingPickler
+
+default_collate_func = dataloader.default_collate
+
+def default_collate_override(batch):
+  dataloader._use_shared_memory = False
+  return default_collate_func(batch)
+ 
+setattr(dataloader, 'default_collate', default_collate_override)
+ 
+for t in torch._storage_classes:
+  if sys.version_info[0] == 2:
+    if t in ForkingPickler.dispatch:
+        del ForkingPickler.dispatch[t]
+  else:
+    if t in ForkingPickler._extra_reducers:
+        del ForkingPickler._extra_reducers[t]
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 cuda_available = torch.cuda.is_available()
@@ -49,6 +71,7 @@ model = Seq2SeqModel(
     encoder_decoder_type="bart",
     encoder_decoder_name=model_path,
     args=model_args,
+    use_cuda=torch.cuda.is_available()
 )
 output=args.output
 # Use the model for prediction

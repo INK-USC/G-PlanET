@@ -38,7 +38,7 @@ def iter(path):
                         dic={'id':id,"input":input+"SCENE DESCRIPTION"+scene_info,"output":z}
                         writer.write(dic)
     
-L=file_name('../')
+L=file_name('./data')
 for i in L:
     print(i)
     iter(i)

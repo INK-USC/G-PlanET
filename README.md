@@ -30,6 +30,17 @@ The `script` folder:
 
 Includes all the script used in the main experiment
 
+Use
+```
+bash script/data_init.sh
+```
+to generate the data for iterative and tapex
+
+when using the scripts to train or test, fill in your data path and model path in the script
+
+In our experiments, we use `facebook/bart-base` and `facebook/bart-large` for initization
+
+
 The `evaluation` folder:
 
 The process needed to run our test framework and its code

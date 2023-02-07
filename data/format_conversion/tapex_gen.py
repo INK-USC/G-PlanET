@@ -44,7 +44,7 @@ def convert_file(path):
     
 
 
-L=file_name("../")
+L=file_name("./data")
 print(L)
 for i in L:
     print(i)
